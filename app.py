@@ -103,10 +103,12 @@ if number:
 
     
 
-        fig = px.scatter_mapbox(df2, lat="lat", lon="lon", zoom=10, color="data", size = 'size', size_max=10, width=600, height=600,
+        fig = px.scatter_mapbox(df2, lat="lat", lon="lon", zoom=10, color_discrete_sequence=['blue', 'red'],
+                                color="data", size = 'size', size_max=10, width=600, height=600,
                                 text = 'UNIDADE')
 
-        fig.update_layout(mapbox_style="open-street-map", showlegend=False)
+        fig.update_layout(mapbox_style="open-street-map", 
+                          showlegend=False)
         fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
         
         col3.markdown('''**Abaixo você pode verificar no mapa de são paulo o endereço fornecido em :red[vermelho]
@@ -117,7 +119,7 @@ if number:
 
         
         
-        df_sel = df[df['distancias']<=number]    
+        df_sel = df[df['distancias']<=number]  
         csv = to_excel(df_sel)
         col1.download_button(
             label="Baixar excel",
@@ -130,6 +132,6 @@ if number:
         col1.dataframe(df_sel[['DRE', 'TIPO', 'UNIDADE', 'VAGA DEFITIVA', 'VAGA PRECÁRIA','distancias']])
         col31, col32 = col3.columns([2,1])
         
-        col31.markdown(':blue[**Esse é um trabalho voluntário**]. Se puder contribua com 8, 10 ou 15 reais')
-        col31.markdown('Leia o QRCode ao lado ou com o codigo: :blue[**00020126330014BR.GOV.BCB.PIX0111234454128475204000053039865802BR5925LUIS ANDRES HOSTOLAZA CRI6009SAO PAULO622605222SlPGERgmjB4vfVO7Khlvq6304735F**]')
+        col31.markdown(':blue[**Esse é um trabalho voluntário**]. Se puder faça um PIX de 8, 10 ou 15 reais')
+        col31.markdown('Leia o qrcode PIX ao lado com seu app do banco ou use a chave PIX: :red[**jaques.zanon@gmail.com**]')
         col32.image(image,use_column_width=False, width=200)
